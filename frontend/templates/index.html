@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+    <script src="{% static 'index.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Просмотр файлов на Яндекс.Диске</h2>
+
+        <!-- Ввод публичной ссылки -->
+        <div class="input-group mb-3">
+            <input type="text" id="public_key" class="form-control" placeholder="Введите публичную ссылку">
+            <button class="btn btn-primary" onclick="fetchFiles()">Обзор</button>
+        </div>
+
+        <!-- Отображение текущей папки -->
+        <div class="alert alert-info py-2 px-2" id="current_folder" style="display:none;">
+            📁 <strong></strong>
+        </div>
+
+        <!-- Фильтр по типу файлов -->
+        <div class="mt-3" id="file-type-filter" style="display:none;">
+            <label for="file_type" class="form-label">Фильтр по типу:</label>
+            <select id="file_type" class="form-select" onchange="updateFileExplorer()">
+                <option value="">Все</option>
+            </select>
+        </div>
+
+        <!-- Кнопки для скачивания -->
+        <div class="mt-3" id="download-buttons" style="display:none;">
+            <button class="btn btn-secondary" onclick="selectAllItems()">Выбрать все</button>
+            <button class="btn btn-primary" onclick="downloadSelectedItems()">Скачать выбранные элементы</button>
+            <button class="btn btn-danger" onclick="clearSelection()">Очистить выделение</button>
+        </div>
+
+        <!-- Проводник для файлов и папок -->
+        <div class="mt-3" id="file-explorer">
+            <div class="list-group" id="explorer-items"></div>
+        </div>
+
+    </div>
+{% endblock %}
