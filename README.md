@@ -9,6 +9,7 @@ Docker & Docker Compose
 Сборка и запуск контейнеров
 docker-compose build
 docker-compose up -d
+
 Приложение будет доступно по адресу: http://127.0.0.1:8000
 
 Остановка контейнеров
